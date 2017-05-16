@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="silver">
+    <ion-title>
+      Order Details
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-card>
+		<ion-list>
+		<ion-item>
+			<ion-label stacked>Order Title</ion-label>
+			<ion-input type="text" [(ngModel)]="orderTitle"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>Order Description</ion-label>
+			<ion-textarea [(ngModel)]="orderDescription" item-height="100"></ion-textarea>
+		</ion-item>
+	</ion-list>
+	<div padding>
+		<button ion-button color="primary" block (click)="onClickPlaceOrderButtton()">Order Now</button>
+	</div>
+	</ion-card>
+</ion-content>

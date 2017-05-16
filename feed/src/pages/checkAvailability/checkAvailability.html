@@ -7,31 +7,23 @@
 </ion-header>
 
 <ion-content>
-
+<ion-card>
 	<ion-list>
 		<ion-item>
-			<ion-label stacked>Dilivery From</ion-label>
+			<ion-label stacked>Retailer Address</ion-label>
 			<ion-input type="text" [(ngModel)]="deliveryFrom"></ion-input>
 		</ion-item>
 		<ion-item>
-			<ion-label stacked>Dilivery To</ion-label>
+			<ion-label stacked>My Address</ion-label>
 			<ion-input type="text" [(ngModel)]="deliveryTo"></ion-input>
 		</ion-item>
 		<ion-item>
-			<ion-label stacked>Estimated Cost</ion-label>
+			<ion-label stacked>Estimated Cost (Rs.)</ion-label>
 			<ion-input type="text" [(ngModel)]="estimatedCost" disabled="true"></ion-input>
 		</ion-item>
 		<ion-item>
-			<ion-label stacked>Discounts</ion-label>
+			<ion-label stacked>Discounts (Rs.)</ion-label>
 			<ion-input type="text" [(ngModel)]="discount" disabled="true"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label stacked>Title</ion-label>
-			<ion-input type="text" [(ngModel)]="title"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label stacked>Description</ion-label>
-			<ion-textarea [(ngModel)]="description"></ion-textarea>
 		</ion-item>
 		<ion-item>
 			<ion-label>Dilivery On</ion-label>
@@ -42,5 +34,5 @@
 	<div padding>
 		<button ion-button color="primary" block (click)="onClickCheckAvailabilityButton()">Check Availability</button>
 	</div>
-
+</ion-card>
 </ion-content>

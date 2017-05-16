@@ -12,10 +12,11 @@ declare var google: any;
 export class RetailerPage {
 
 	// Variables
-	deliveryFrom: String;
-	deliveryFromDetails: any;
+	deliveryFrom		: String;
+	deliveryFromDetails	: any;
 
-	deliveryTo: String;
+	deliveryTo			: String;
+	deliveryToDetails	: any;
 
 	address: any = {
 		place: '',
@@ -31,9 +32,8 @@ export class RetailerPage {
 	acService: any;
 
 	constructor(public navCtrl: NavController, public params: NavParams) {
-		this.deliveryFrom 		 = this.params.get('deliveryFrom');
-		this.deliveryFromDetails = this.params.get('deliveryFromDetails');
-		this.deliveryTo   = ""
+		this.deliveryTo 		 = this.params.get('deliveryTo');
+		this.deliveryToDetails   = this.params.get('deliveryToDetails');
 	}
 
 	ngOnInit() {
@@ -173,10 +173,10 @@ export class RetailerPage {
 	// UI Controller actions
 	onClickNextButton(retailersLocation) {
 		this.navCtrl.push(CheckAvailabilityPage, {
-			"deliveryFrom"		  : this.deliveryFrom,
-			"deliveryFromDetails" : this.deliveryFromDetails,
-			"deliveryTo"  		  : this.autocomplete.query,
-			"deliveryToDetails"	  : this.placedetails
+			"deliveryFrom"		  : this.autocomplete.query,
+			"deliveryFromDetails" : this.placedetails,
+			"deliveryTo"  		  : this.deliveryTo,
+			"deliveryToDetails"	  : this.deliveryToDetails
 		});
 	}
 }

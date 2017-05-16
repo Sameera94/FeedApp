@@ -7,7 +7,7 @@ import { LoginService } from './services/LoginService'
 import { OrderService } from './services/OrderService'
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
-
+import { OrderSummaryPage } from '../pages/orderSummary/orderSummary'
 
 @Component({
   templateUrl: 'app.html',

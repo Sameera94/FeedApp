@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { RiderPage } from '../rider/rider';
+import { OrderPage } from '../order/order';
 import { OrderService } from '../../app/services/OrderService';
 import { LoginService } from '../../app/services/LoginService';
 
@@ -12,12 +12,23 @@ import { LoginService } from '../../app/services/LoginService';
 export class CheckAvailabilityPage {
 
 	//Variables
-	deliveryFrom: String
-	deliveryFromDetails: any;
-	deliveryTo: String
-	deliveryToDetails: any;
-	title: String
-	description: String
+	deliveryFrom	    : String   // Address
+	deliveryFromDetails : any     // Details Array
+	deliveryTo		    : String   // Address
+	deliveryToDetails	: any     // Details Array
+	fromLat	 	  		: GLfloat
+	fromLng	 	  		: GLfloat
+	toLat  	 	 		: GLfloat
+	toLng  	 	  		: GLfloat
+	fromArea 	  		: String    // Main Delivery from Area
+	toArea	 	  		: String    // Main Delivery to Area
+	estimatedCost 		: GLfloat
+	discount			: GLfloat
+	distance	  		: GLfloat
+	ridderId			: GLint
+	userId				: GLint
+	// title: String
+	// description: String
 
 	public event = {
 		month: '2017-05-06',
@@ -26,47 +37,67 @@ export class CheckAvailabilityPage {
 	}
 
 	constructor(public navCtrl: NavController, public params: NavParams, public alertCtrl: AlertController, private orderService: OrderService, private loginService: LoginService) {
-		this.deliveryFrom = this.params.get('deliveryFrom');
+		
+		this.deliveryFrom 		 = this.params.get('deliveryFrom');
 		this.deliveryFromDetails = this.params.get('deliveryFromDetails');
-		this.deliveryTo = this.params.get('deliveryTo');
-		this.deliveryToDetails = this.params.get('deliveryToDetails');
+		this.deliveryTo 		 = this.params.get('deliveryTo');
+		this.deliveryToDetails   = this.params.get('deliveryToDetails');
+		this.discount            = 0.00
+		this.estimatedCost       = 0.00
+		this.userId				 = 1
+	}
 
-		this.title = ""
-		this.description = ""
+	ngOnInit() {
+		this.fromLat   = this.deliveryFromDetails.lat
+		this.fromLng   = this.deliveryFromDetails.lng
+		this.toLat     = this.deliveryToDetails.lat
+		this.toLng     = this.deliveryToDetails.lng
+		this.fromArea  = this.deliveryFromDetails.components.administrative_area_level_2.long
+		this.toArea    = this.deliveryToDetails.components.administrative_area_level_2.long
+
+		// Calculate distance and cost
+		this.distance      = this.getDistanceFromLatLonInKm(this.deliveryFromDetails.lat,this.deliveryFromDetails.lng,this.deliveryToDetails.lat, this.deliveryToDetails.lng);
+		this.estimatedCost = this.distance * 100.0
 	}
 
 	//UI Controller Actions
 	onClickCheckAvailabilityButton() {
 
-		console.log(this.deliveryFromDetails)
-		console.log("* * * * * * * * * *")
-		console.log(this.deliveryToDetails)
-
-		// if (this.deliveryFrom != "" && this.deliveryTo != "") {
-		// 	this.checkAvailability(this.deliveryFrom, this.deliveryTo, "2017-05-27");
-		// } else {
-		// 	this.showAlert("Error!", "Please fill all the fields.")
-		// }
-
-		var distance = this.getDistanceFromLatLonInKm(this.deliveryFromDetails.lat,this.deliveryFromDetails.lng,this.deliveryToDetails.lat, this.deliveryToDetails.lng);
-		console.log("Distance: " + distance+ " km")
-
+		if (this.deliveryFrom != "" && this.deliveryTo != "") {
+			this.checkAvailability(this.deliveryFrom, this.deliveryTo, this.event.month, this.fromLat, this.fromLng, this.toLat, this.toLng, this.fromArea, this.toArea);
+		} else {
+			this.showAlert("Error!", "Please fill all the fields.")
+		}		
 	}
 
 	//Custom functions
 	showConfirmAlert() {
 		let prompt = this.alertCtrl.create({
-			title: 'Confirm',
-			message: "Riders are avaialble and extimated cost will be Rs. 270.00/=, are you sure want to place the order?",
+			message: "Riders are avaialble! Do you want to continue?",
 			buttons: [
 				{
 					text: 'Cancel',
 					handler: data => { }
 				},
 				{
-					text: 'Confirm',
+					text: 'Continue',
 					handler: data => {
-						this.createNewOrder(this.deliveryFrom, this.deliveryTo, this.title, this.description, this.event.month, 1);
+						this.navCtrl.push(OrderPage, {
+							"deliveryFrom" 	: this.deliveryFrom,
+							"deliveryTo" 	: this.deliveryTo,
+							"fromLat" 		: this.fromLat,
+							"fromLng" 		: this.fromLng,
+							"toLat" 		: this.toLat,
+							"toLng" 		: this.toLng,
+							"fromArea" 		: this.fromArea,
+							"toArea" 		: this.toArea,
+							"estimatedCost" : this.estimatedCost,
+							"discount" 		: this.discount,
+							"distance" 		: this.distance,
+							"ridderId"		: this.ridderId,
+							"deliveryOn"	: this.event.month,
+							"userId"		: this.userId
+						});
 					}
 				}
 			]
@@ -74,7 +105,6 @@ export class CheckAvailabilityPage {
 		prompt.present();
 	}
 
-	// Custom functions
 	showAlert(title, message) {
 		let prompt = this.alertCtrl.create({
 			title: title,
@@ -89,30 +119,6 @@ export class CheckAvailabilityPage {
 			]
 		});
 		prompt.present();
-	}
-
-	// Service calls
-	checkAvailability(from, to, on) {
-		this.orderService.checkRidderAvailability(from, to, on).subscribe(response => {
-			if (response) {
-				//Success
-				this.showConfirmAlert();
-			} else {
-				//Failed
-				this.showAlert("Order Failed!", "No ridders available!");
-			}
-		});
-	}
-
-	// Create new order
-	createNewOrder(from, to, title, description, on, userId) {
-		this.orderService.createNewOrder(from, to, title, description, on, userId).subscribe(response => {
-			if (response) {
-				this.navCtrl.push(RiderPage, {});
-			} else {
-				this.showAlert("Order Failed!", "Internal error!");
-			}
-		});
 	}
 
 	getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
@@ -132,4 +138,20 @@ export class CheckAvailabilityPage {
 	deg2rad(deg) {
 		return deg * (Math.PI / 180)
 	}
+
+	// Service calls
+	checkAvailability(from, to, on, fromLat, fromLng, toLat, toLng, fromArea, toArea) {
+		this.orderService.checkRidderAvailability(from, to, on, fromLat, fromLng, toLat, toLng, fromArea, toArea).subscribe(response => {
+			
+			if (response.status) {
+				this.ridderId = response.ridderId;
+				this.showConfirmAlert();
+				
+			} else {
+				//Failed
+				this.showAlert("Order Failed!", "No ridders available!");
+			}
+		});
+	}
+
 }

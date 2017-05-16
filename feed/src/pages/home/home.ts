@@ -169,8 +169,8 @@ export class HomePage {
 	//UI Controller actions
 	onClickNextButton() {
 		this.navCtrl.push(RetailerPage, {
-			"deliveryFrom"		  : this.autocomplete.query,
-			"deliveryFromDetails" : this.placedetails
+			"deliveryTo"		  : this.autocomplete.query,
+			"deliveryToDetails" : this.placedetails
 		});
 	}
 

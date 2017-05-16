@@ -13,23 +13,33 @@ export class OrderService {
     }
 
 	// Check ridders availability
-    checkRidderAvailability(from, to, date) {
+    checkRidderAvailability(from, to, on, fromLat, fromLng, toLat, toLng, fromArea, toArea) {
         return this.http.post(this.baseUrl+'/checkRidderAvailability',{
-			"diliveryFrom" : from,
-			"diliveryTo"   : to,
-			"deliveryOn"   : date
+			"diliveryFrom" 	: from,
+			"diliveryTo"   	: to,
+			"deliveryOn"   	: on,
+			"fromLat"		: fromLat,
+			"fromLng"   	: fromLng,
+			"toLat"			: toLat,
+			"toLng"			: toLng,
+			"fromArea"	    : fromArea,
+			"toArea"	    : toArea
 		}).map(res => res.json());
     }
 
 	// Create new Order
-	createNewOrder(from, to, title, description, on, userId) {
+	createNewOrder(from, to, on, estimatedCost, discount, distance, userId, ridderId, title, description) {
 		return this.http.post(this.baseUrl+'/createNewOrder', {
 			"deliveryFrom" : from,
 			"deliveryTo"   : to,
 			"deliveryDate" : on,
 			"title"		   : title,
 			"description"  : description,
-			"user"		   : userId
+			"userId"	   : userId,
+			"ridderId"	   : ridderId,
+			"estimatedCost": estimatedCost,
+			"distance"	   : distance,
+			"discount"     : discount
 		}).map(res => res.json());
 	}
 

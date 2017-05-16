@@ -1,0 +1,57 @@
+<ion-header>
+	<ion-navbar color="silver">
+		<ion-title>
+			Order Summary
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-card>
+
+		<ion-card-content>
+			<ion-card-title>
+				{{ orderTitle }}
+			</ion-card-title>
+			<p>
+				{{ orderDescription }}
+			</p>
+		</ion-card-content>
+	</ion-card>
+	<ion-card>
+		<ion-item>
+			<ion-icon name="home" item-left large></ion-icon>
+			<h2>Delivery Address</h2>
+			<p>{{ deliveryTo }}</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-icon name="list-box" item-left large></ion-icon>
+			<h2>Retailer Address</h2>
+			<p>{{ deliveryFrom }}</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-icon name="calendar" item-left large></ion-icon>
+			<h2>Delivery Date</h2>
+			<p>{{ deliveryOn }}</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-icon name="bicycle" item-left large></ion-icon>
+			<h2>Distance</h2>
+			<p>{{ distance }}&nbsp;Km</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-icon name="cash" item-left large></ion-icon>
+			<h2>Amount</h2>
+			<p>Rs.&nbsp;{{ estimatedCost }}</p>
+		</ion-item>
+	</ion-card>
+
+	<div>
+          <button ion-button color="primary" block ><ion-icon name="ios-call"></ion-icon> &nbsp;Call to Rider</button>
+    </div>
+
+</ion-content>

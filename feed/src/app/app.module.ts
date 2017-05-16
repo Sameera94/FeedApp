@@ -8,6 +8,8 @@ import { DetailsPage } from '../pages/details/details';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { OrderPage } from '../pages/order/order';
+import { OrderSummaryPage } from '../pages/orderSummary/orderSummary';
 import { RegisterPage } from '../pages/register/register';
 import { ContactPage } from '../pages/contact/contact';
 import { PostPage } from '../pages/post/post';
@@ -35,7 +37,9 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
     RetailerPage,
     CheckAvailabilityPage,
     RiderPage,
-    OrdersPage
+    OrdersPage,
+	OrderPage,
+	OrderSummaryPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -59,7 +63,9 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
     RetailerPage,
     CheckAvailabilityPage,
     RiderPage,
-    OrdersPage
+    OrdersPage,
+	OrderPage,
+	OrderSummaryPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},Geolocation,NativeGeocoder]
 })
