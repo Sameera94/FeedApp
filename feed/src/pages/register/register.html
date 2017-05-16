@@ -1,0 +1,31 @@
+<ion-content class="background">
+	<ion-card>
+		<ion-card-header>
+			Register
+		</ion-card-header>
+		<ion-card-content>
+			<ion-list no-line>
+				<ion-item>
+					<ion-input type="text" placeholder="First Name" [(ngModel)]="firstName"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="text" placeholder="Last Name" [(ngModel)]="lastName"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="text" placeholder="Phone" [(ngModel)]="phoneNumber"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="text" placeholder="Password" [(ngModel)]="password"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="text" placeholder="Confirm Password" [(ngModel)]="confirmPassword"></ion-input>
+				</ion-item>
+				<button ion-button block outline color="light" (click)="onClickRegisterButton()">Register</button>
+				<button ion-button block outline color="light" (click)="onClickCancelButton()">Cancel</button>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

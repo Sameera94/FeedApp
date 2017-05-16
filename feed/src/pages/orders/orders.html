@@ -1,0 +1,75 @@
+<ion-header>
+	<ion-navbar color="silver">
+		<ion-title>
+			My Orders
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+	
+		<ion-item *ngFor="let order of orders">
+			<ion-avatar item-left>
+				<img src="assets/img/order-icon.png">
+			</ion-avatar>
+			<h2>{{ order.title }}</h2> <h2 item-right>- by {{ order.firstName }}</h2>
+			<h3>{{ order.deliveryDate }}</h3>
+			<p>{{ order.description }}</p>
+		</ion-item>
+
+		<!--<ion-item>
+			<ion-avatar item-left>
+				<img src="assets/img/order-icon.png">
+			</ion-avatar>
+			<h2>Buy Gas cylinder</h2>
+			<h3>2017/04/10</h3>
+			<p>I've got enough on my plate as it is, and I...</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-avatar item-left>
+				<img src="assets/img/order-icon.png">
+			</ion-avatar>
+			<h2>Diliver some goods</h2>
+			<h3>2017/04/08</h3>
+			<p>Listen, I've had a pretty messed up day...</p>
+		</ion-item>-->
+	</ion-list>
+
+	<!--<ion-list>
+		<ion-list-header>
+			Upcoming months
+		</ion-list-header>
+
+		<ion-item>
+			<ion-avatar item-left>
+				<img src="assets/img/order-icon.png">
+			</ion-avatar>
+			<h2>Buy SSD drive</h2>
+			<h3>2017/05/13</h3>
+			<p>I just upgraded my X-Wing. Next time...</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-avatar item-left>
+				<img src="assets/img/order-icon.png">
+			</ion-avatar>
+			<h2>Buy a computer mouse</h2>
+			<h3>2017/05/11</h3>
+			<p>These aren't the droids you're looking for...</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-avatar item-left>
+				<img src="assets/img/order-icon.png">
+			</ion-avatar>
+			<h2>Buy stationary items</h2>
+			<h3>2017/05/03</h3>
+			<p>These aren't the droids you're looking for...</p>
+		</ion-item>
+
+	</ion-list>-->
+
+
+</ion-content>

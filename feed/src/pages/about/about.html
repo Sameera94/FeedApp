@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      About
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<!--
+<button ion-button (click)="onClickGetMyLocation()" block>Get My Location</button>-->
+
+<ion-content>
+  
+  <ion-fab right top>
+    <button ion-fab (click)="onClickGetMyLocation()">
+      <ion-icon name="pin"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <sebm-google-map [latitude]="lat" [longitude]="lng">
+    <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+  </sebm-google-map>
+<!--
+  <button ion-button (click)="test()" block>Test</button>-->
+
+</ion-content>
