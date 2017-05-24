@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import { DetailsPage } from '../details/details';
-import { RetailerPage } from '../retailer/retailer';
+import { CheckAvailabilityPage } from '../checkAvailability/checkAvailability';
+import { AlertController } from 'ionic-angular';
 
 declare var google: any;
 
@@ -28,8 +28,11 @@ export class HomePage {
 	autocomplete: any;
 	acService: any;
 
-	constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
+	constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
 		this.deliveryFrom = ""
+		this.autocomplete = {
+			query: ''
+		};
 	}
 
 	ngOnInit() {
@@ -167,11 +170,38 @@ export class HomePage {
 	}
 
 	//UI Controller actions
+	// onClickNextButton() {
+	// 	this.navCtrl.push(RetailerPage, {
+	// 		"deliveryTo"		  : this.autocomplete.query,
+	// 		"deliveryToDetails" : this.placedetails
+	// 	});
+	// }
+
 	onClickNextButton() {
-		this.navCtrl.push(RetailerPage, {
-			"deliveryTo"		  : this.autocomplete.query,
-			"deliveryToDetails" : this.placedetails
+
+		if (this.autocomplete.query == "" ){
+			this.showAlert("Please Select the Retailer location!");
+		} else {
+			this.navCtrl.push(CheckAvailabilityPage, {
+				"deliveryFrom"  	  : this.autocomplete.query,
+				"deliveryFromDetails" : this.placedetails
+			});
+		}		
+	}
+
+	showAlert(message) {
+		let prompt = this.alertCtrl.create({
+			message: message,
+			buttons: [
+				{
+					text: 'Ok',
+					handler: data => {
+						console.log('OK clicked');
+					}
+				}
+			]
 		});
+		prompt.present();
 	}
 
 }

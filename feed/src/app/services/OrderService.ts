@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/Rx'
 
+
 @Injectable()
 export class OrderService {
     http: any;
@@ -9,7 +10,7 @@ export class OrderService {
 
     constructor(http: Http) {
         this.http = http;
-        this.baseUrl = 'http://localhost:3001'
+        this.baseUrl = 'http://192.168.8.100:3001'
     }
 
 	// Check ridders availability
@@ -45,8 +46,23 @@ export class OrderService {
 
 	// Get all Orders
 	getAllOrders(userId) {
-		return this.http.post(this.baseUrl+'/getAllOrders', {
+		return this.http.post(this.baseUrl+'/getAllNewOrders', {
 			"user" : userId
 		}).map(res => res.json());
 	}
+
+	getAllOrdersDue(userId) {
+		return this.http.post(this.baseUrl+'/getAllOrdersDue', {
+			"user" : userId
+		}).map(res => res.json());
+	}
+
+	// Cancel order
+	cancelOrder(orderId) {
+		return this.http.post(this.baseUrl+'/cancelOrder', {
+			"orderId" : orderId
+		}).map(res => res.json());
+	}
+
+
 }

@@ -9,7 +9,7 @@ export class LoginService {
 
     constructor(http: Http) {
         this.http = http;
-        this.baseUrl = 'http://localhost:3001'
+        this.baseUrl = 'http://192.168.8.100:3001'
     }
 
 	// Validate User Login

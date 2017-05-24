@@ -4,8 +4,11 @@ import { AlertController } from 'ionic-angular';
 import { OrderPage } from '../order/order';
 import { OrderService } from '../../app/services/OrderService';
 import { LoginService } from '../../app/services/LoginService';
+import { Storage } from '@ionic/storage';
+import { LoadingController } from 'ionic-angular';
 
 @Component({
+	selector: 'page-checkAvailability',
 	templateUrl: 'checkAvailability.html'
 })
 
@@ -15,7 +18,6 @@ export class CheckAvailabilityPage {
 	deliveryFrom	    : String   // Address
 	deliveryFromDetails : any     // Details Array
 	deliveryTo		    : String   // Address
-	deliveryToDetails	: any     // Details Array
 	fromLat	 	  		: GLfloat
 	fromLng	 	  		: GLfloat
 	toLat  	 	 		: GLfloat
@@ -27,37 +29,40 @@ export class CheckAvailabilityPage {
 	distance	  		: GLfloat
 	ridderId			: GLint
 	userId				: GLint
-	// title: String
-	// description: String
-
+	loading 			: any;
+	
 	public event = {
-		month: '2017-05-06',
+		month: '2017-05-24',
 		timeStarts: '07:43',
 		timeEnds: '2017-05-07'
 	}
 
-	constructor(public navCtrl: NavController, public params: NavParams, public alertCtrl: AlertController, private orderService: OrderService, private loginService: LoginService) {
+	constructor(public navCtrl: NavController, public params: NavParams, public alertCtrl: AlertController, private orderService: OrderService, private loginService: LoginService, private storage: Storage, public loadingCtrl: LoadingController) {
 		
 		this.deliveryFrom 		 = this.params.get('deliveryFrom');
 		this.deliveryFromDetails = this.params.get('deliveryFromDetails');
-		this.deliveryTo 		 = this.params.get('deliveryTo');
-		this.deliveryToDetails   = this.params.get('deliveryToDetails');
+		this.deliveryTo 		 = "Pearson Lanka, Orion City, Colombo 00900"
 		this.discount            = 0.00
 		this.estimatedCost       = 0.00
-		this.userId				 = 1
+
+		this.storage.get('userId').then(
+			(userId) => {
+				this.userId = userId;
+			}
+		);
 	}
 
 	ngOnInit() {
 		this.fromLat   = this.deliveryFromDetails.lat
 		this.fromLng   = this.deliveryFromDetails.lng
-		this.toLat     = this.deliveryToDetails.lat
-		this.toLng     = this.deliveryToDetails.lng
+		this.toLat     = 6.941512
+		this.toLng     = 79.880925
 		this.fromArea  = this.deliveryFromDetails.components.administrative_area_level_2.long
-		this.toArea    = this.deliveryToDetails.components.administrative_area_level_2.long
+		this.toArea    = "Colombo"
 
 		// Calculate distance and cost
-		this.distance      = this.getDistanceFromLatLonInKm(this.deliveryFromDetails.lat,this.deliveryFromDetails.lng,this.deliveryToDetails.lat, this.deliveryToDetails.lng);
-		this.estimatedCost = this.distance * 100.0
+		this.distance      = this.getDistanceFromLatLonInKm(this.deliveryFromDetails.lat,this.deliveryFromDetails.lng,this.toLat, this.toLng );
+		this.estimatedCost = this.distance * 24.0
 	}
 
 	//UI Controller Actions
@@ -141,15 +146,27 @@ export class CheckAvailabilityPage {
 
 	// Service calls
 	checkAvailability(from, to, on, fromLat, fromLng, toLat, toLng, fromArea, toArea) {
+
+		// Loading Start
+		this.loading = this.loadingCtrl.create({
+			content: 'Loading...'
+		});
+		this.loading.present();
+
 		this.orderService.checkRidderAvailability(from, to, on, fromLat, fromLng, toLat, toLng, fromArea, toArea).subscribe(response => {
 			
 			if (response.status) {
-				this.ridderId = response.ridderId;
-				this.showConfirmAlert();
-				
+				setTimeout(() => {
+					this.loading.dismiss();
+					this.ridderId = response.ridderId;
+					this.showConfirmAlert();
+				}, 2000);
 			} else {
 				//Failed
-				this.showAlert("Order Failed!", "No ridders available!");
+				setTimeout(() => {
+					this.loading.dismiss();
+					this.showAlert("Order Failed!", "No ridders available!");
+				}, 2000);
 			}
 		});
 	}

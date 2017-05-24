@@ -1,21 +1,31 @@
 login-page {
-	.background {
-		background-image: url('../assets/img/loginBackground.jpg');
-		background-repeat: no-repeat;
-  		background-size: 250% 100%;
-	}
+
+
+	 .background {
+		 background: #F1F0F0;
+		// background: rgba(0, 0, 0, 0.05) !important;
+	// 	background-image: url('../assets/img/loginBackground.jpg');
+	// 	background-repeat: no-repeat;
+  	// 	background-size: 250% 100%;
+	 }
+
+    img {
+      width: 50%;
+      height: auto;
+      margin: 0 auto;
+    }
 
 	.scroll-content {
 		align-content: center;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: top;
 		text-align: center;
 	}
 
 	ion-card.card {
 		box-shadow: none;
-		background: rgba(0, 0, 0, 0.66);
+		background: rgba(0, 0, 0, 0.04);
 		border-radius: 5px;
 	}
 
@@ -30,31 +40,31 @@ login-page {
 
 	.item {
 		margin-bottom: 10px;
-		background: rgba(255, 255, 255, 0.5);
+		background: rgba(255, 255, 255, 1);
 		border: medium none;
 
 		.text-input, {
-			color: #fff;
+			color: black;
 		}
 
 		input::-moz-placeholder  {
-			color: #fff!important;
+			color:gray !important;
 		}
 
 		input:-moz-placeholder {
-			color: #fff!important;
+			color: gray !important;
 		}
 
 		*::-webkit-input-placeholder  {
-			color: #fff!important;
+			color: gray !important;
 		}
 
 		*:-ms-input-placeholder  {
-			color: #fff!important;
+			color: gray !important;
 		}
 
 		*:-moz-placeholder  {
-			color: #fff!important;
+			color: gray !important;
 		}
 	}
 
@@ -66,4 +76,15 @@ login-page {
 		position: absolute;
 		bottom: 0;
 	}
+
+	.button  {
+		background: #007a9c;
+		color: white;	
+	}
+
+	// .ion-input {
+	// 	background: white;
+	// 	color: # !important;
+
+	// }
 }

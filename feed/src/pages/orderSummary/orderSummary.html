@@ -10,10 +10,10 @@
 	<ion-card>
 
 		<ion-card-content>
-			<ion-card-title>
+			<ion-card-title class="order-title">
 				{{ orderTitle }}
 			</ion-card-title>
-			<p>
+			<p class="order-description">
 				{{ orderDescription }}
 			</p>
 		</ion-card-content>
@@ -40,18 +40,19 @@
 		<ion-item>
 			<ion-icon name="bicycle" item-left large></ion-icon>
 			<h2>Distance</h2>
-			<p>{{ distance }}&nbsp;Km</p>
+			<p>{{ distance | number : '1.2-2' }}&nbsp;Km</p>
 		</ion-item>
 
 		<ion-item>
 			<ion-icon name="cash" item-left large></ion-icon>
 			<h2>Amount</h2>
-			<p>Rs.&nbsp;{{ estimatedCost }}</p>
+			<p>Rs.&nbsp;{{ estimatedCost | number : '1.2-2' }}</p>
 		</ion-item>
 	</ion-card>
 
-	<div>
-          <button ion-button color="primary" block ><ion-icon name="ios-call"></ion-icon> &nbsp;Call to Rider</button>
+	<div padding class="action-sheets-basic-page">
+          <button ion-button color="primary" (click)="callToRidder()" block  class="button-call"><ion-icon name="ios-call"></ion-icon> &nbsp; &nbsp;Call to Rider</button>
+		 <button ion-button color="primary" (click)="onClickHome()" block  class="button-home"><ion-icon name="home"></ion-icon> &nbsp; &nbsp;Home</button>
     </div>
 
 </ion-content>

@@ -1,0 +1,33 @@
+page-checkAvailability {
+	.button-login {
+		background:#007a9c;
+	}
+
+	.lbl {
+		color:black !important;
+	}
+	
+	.action-sheets-basic-page {
+		.ion-md-share {
+			color: #ED4248;
+		}
+		.ion-md-arrow-dropright-circle {
+			color: #007a9c;
+		}
+		.ion-md-heart-outline {
+			color: #31D55F;
+		}
+		.action-sheet-cancel ion-icon,
+		.action-sheet-destructive ion-icon {
+			color: #757575;
+		}
+		
+	}
+
+	.disabled {
+		color: black !important;
+	}
+
+	
+
+}

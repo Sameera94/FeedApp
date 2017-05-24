@@ -1,24 +1,51 @@
 <ion-content class="background">
+
+	<br/>
+	<ion-row>
+      <ion-col>
+        <img src="./assets/img/Pearson_logo.png">
+      </ion-col>
+    </ion-row>
+	<br/>	
 	<ion-card>
-		<ion-card-header>
+		<!--<ion-card-header>
 			Login
-		</ion-card-header>
-		<ion-card-content>
+		</ion-card-header>-->
+		<ion-card-content style="position:relative">
 			<ion-list no-line>
 				<ion-item>
-					<ion-input type="text" placeholder="Username" [(ngModel)]="username"></ion-input>
+					<ion-input type="text" placeholder="Proot" [(ngModel)]="username"></ion-input>
 				</ion-item>
 				<ion-item>
 					<ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
 				</ion-item>
-				<a>Forgot your login detail? <b>Get help signing in</b></a>
 				<button ion-button block outline color="light" (click)="onClickLoginButton()">Login</button>
-				<p>OR</p>
-				<button ion-button block color="facebook">
-					<ion-icon name="logo-facebook"></ion-icon> Login with facebook
-				</button>
 			</ion-list>
 		</ion-card-content>
 	</ion-card>
-	<button class="bottom" ion-button clear full color="light" (click)="onClickRegisterButton()">Don't have an account? Sign up</button>
 </ion-content>
+
+<!--
+<ion-content class="background">
+
+	<br/>
+	<ion-row>
+      <ion-col>
+        <img src="./assets/img/Pearson_logo.png">
+      </ion-col>
+    </ion-row>
+	<br/>	
+	<ion-card>
+		<ion-card-content>
+			<ion-list no-line>
+				<ion-item>
+					<ion-input type="text" placeholder="Proot" [(ngModel)]="username"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+				</ion-item>
+				<button ion-button block outline color="light" (click)="onClickLoginButton()">Login</button>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+</ion-content>-->

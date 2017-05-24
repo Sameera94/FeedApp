@@ -1,0 +1,39 @@
+orderSummary2 {
+
+	.button-call {
+		background:#007a9c;
+	}
+
+	.button-close {
+		background:#B03535;
+	}
+
+	.button-home {
+		background:green;
+	}
+
+	.action-sheets-basic-page {
+		.ion-md-share {
+			color: #ED4248;
+		}
+		.ion-md-arrow-dropright-circle {
+			color: #007a9c;
+		}
+		.ion-md-heart-outline {
+			color: #31D55F;
+		}
+		.action-sheet-cancel ion-icon,
+		.action-sheet-destructive ion-icon {
+			color: #757575;
+		}
+		
+	}
+
+	.order-title {
+		color: #007a9c !important;
+	}
+
+	.order-description {
+		color:gray !important;
+	}
+}

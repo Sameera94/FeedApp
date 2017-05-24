@@ -44,17 +44,35 @@ export class OrderPage {
 		this.ridderId			= this.params.get('ridderId');
 		this.userId				= this.params.get('userId');
 		this.deliveryOn			= this.params.get('deliveryOn');
-		this.orderTitle 		= ""
-		this.orderDescription 	= "" 
+		this.orderTitle 		= " "
+		this.orderDescription 	= " " 
 	
 	}
 
 	// UI Outlet Actions
 	onClickPlaceOrderButtton() {
-		// Create new order
-		//  on, estimatedCost, discount, distance, userId, ridderId, title, description
-		this.createNewOrder(this.deliveryFrom, this.deliveryTo, this.deliveryOn, this.estimatedCost, this.discount, this.distance, this.userId, this.ridderId, this.orderTitle, this.orderDescription);
-		// Show Order Summary Page
+		this.showConfirmAlert()
+	}
+
+	//Custom functions
+	showConfirmAlert() {
+		let prompt = this.alertCtrl.create({
+			message: "Delivery charge of Rs. "+ this.estimatedCost + " will be added to the original amount. Do you want to continue?",
+			buttons: [
+				{
+					text: 'Cancel',
+					handler: data => { }
+				},
+				{
+					text: 'Continue',
+					handler: data => {
+						// Create new order
+						this.createNewOrder(this.deliveryFrom, this.deliveryTo, this.deliveryOn, this.estimatedCost, this.discount, this.distance, this.userId, this.ridderId, this.orderTitle, this.orderDescription);
+					}
+				}
+			]
+		});
+		prompt.present();
 	}
 
 	// Service Calls
@@ -70,7 +88,8 @@ export class OrderPage {
 					"userId"        : this.userId,
 					"deliveryOn"    : this.deliveryOn,
 					"orderTitle"    : this.orderTitle,
-					"orderDescription" : this.orderDescription
+					"orderDescription" : this.orderDescription,
+					"orderId"		: 0
 				});
 			} else {
 				this.showAlert("Order Failed!", "Internal error!");

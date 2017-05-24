@@ -6,33 +6,67 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content>
-<ion-card>
-	<ion-list>
-		<ion-item>
-			<ion-label stacked>Retailer Address</ion-label>
-			<ion-input type="text" [(ngModel)]="deliveryFrom"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label stacked>My Address</ion-label>
-			<ion-input type="text" [(ngModel)]="deliveryTo"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label stacked>Estimated Cost (Rs.)</ion-label>
-			<ion-input type="text" [(ngModel)]="estimatedCost" disabled="true"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label stacked>Discounts (Rs.)</ion-label>
-			<ion-input type="text" [(ngModel)]="discount" disabled="true"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label>Dilivery On</ion-label>
-			<ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month"></ion-datetime>
-		</ion-item>
-	</ion-list>
+<!--<ion-content>
+	<ion-card>
+		<ion-list>
+			<ion-item>
+				<ion-label stacked class="lbl">Retailer Location</ion-label>
+				<ion-textarea class="disabled" [(ngModel)]="deliveryFrom" item-height="50"></ion-textarea>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked class="lbl">Delivery Location</ion-label>
+				<ion-input class="disabled" type="text" [(ngModel)]="deliveryTo" ></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked class="lbl">Distance (Km)</ion-label>
+				<ion-input class="disabled" type="text" [(ngModel)]="distance" ng-readonly="true"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked class="lbl">Estimated Cost (Rs.)</ion-label>
+				<ion-input type="text" [(ngModel)]="estimatedCost" ng-readonly="true"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label class="lbl">Dilivery On</ion-label>
+				<ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month"></ion-datetime>
+			</ion-item>
+		</ion-list>
 
-	<div padding>
-		<button ion-button color="primary" block (click)="onClickCheckAvailabilityButton()">Check Availability</button>
+		<div padding class="action-sheets-basic-page">
+			<button ion-button color="primary" block (click)="onClickCheckAvailabilityButton()" class="button-login">Check Availability</button>
+		</div>
+
+	</ion-card>
+</ion-content>-->
+<ion-content>
+	<ion-card>
+		<ion-item>
+			<p>Retailer Location</p>
+			<h2>{{ deliveryFrom }}</h2>
+		</ion-item>
+		<ion-item>
+			<p>Delivery Location</p>
+			<h2>{{ deliveryTo }}</h2>
+		</ion-item>
+	</ion-card>
+	<ion-card>
+		<ion-item>
+			<p>Distance (Km)</p>
+			<h2>{{ distance | number : '1.2-2' }}</h2>
+		</ion-item>		
+		<ion-item>
+			<p>Estimated Cost (Rs.)</p>
+			<h2>{{ estimatedCost | number : '1.2-2' }}</h2>
+		</ion-item>
+	</ion-card>
+	<ion-card>
+		<ion-item>
+				<ion-label class="lbl">Dilivery On</ion-label>
+				<ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month"></ion-datetime>
+		</ion-item>	
+	</ion-card>
+
+	<div padding class="action-sheets-basic-page">
+			<button ion-button color="primary" block (click)="onClickCheckAvailabilityButton()" class="button-login">Check Availability</button>
 	</div>
-</ion-card>
+
 </ion-content>

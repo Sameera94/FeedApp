@@ -6,5 +6,37 @@ order {
 		height: 20vh;
 	}
 
+	.button-order {
+		background:#007a9c;
+	}
+
+	.lbl {
+		color:gray !important;
+	}
+	
+	.action-sheets-basic-page {
+		.ion-md-share {
+			color: #ED4248;
+		}
+		.ion-md-arrow-dropright-circle {
+			color: #007a9c;
+		}
+		.ion-md-heart-outline {
+			color: #007a9c;
+		}
+		.action-sheet-cancel ion-icon,
+		.action-sheet-destructive ion-icon {
+			color: #757575;
+		}
+		
+	}
+
+	.scroll-content {
+		overflow: hidden;
+	}
+
+	.textbox {
+		color: black !important;
+	}
 }
 

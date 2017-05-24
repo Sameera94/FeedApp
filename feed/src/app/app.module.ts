@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { OrderPage } from '../pages/order/order';
 import { OrderSummaryPage } from '../pages/orderSummary/orderSummary';
+import { OrderSummaryPage2 } from '../pages/orderSummary2/orderSummary2';
 import { RegisterPage } from '../pages/register/register';
 import { ContactPage } from '../pages/contact/contact';
 import { PostPage } from '../pages/post/post';
@@ -20,6 +21,9 @@ import { OrdersPage } from '../pages/orders/orders';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { Storage } from '@ionic/storage';
+//import { LoginPage } from '../pages/login-page/login-page';
+
  
 @NgModule({
   declarations: [
@@ -39,7 +43,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
     RiderPage,
     OrdersPage,
 	OrderPage,
-	OrderSummaryPage
+	OrderSummaryPage,
+	OrderSummaryPage2
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -65,8 +70,9 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
     RiderPage,
     OrdersPage,
 	OrderPage,
-	OrderSummaryPage
+	OrderSummaryPage,
+	OrderSummaryPage2
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},Geolocation,NativeGeocoder]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},Geolocation,NativeGeocoder, Storage]
 })
 export class AppModule {}

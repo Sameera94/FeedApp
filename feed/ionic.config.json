@@ -1,6 +1,5 @@
 {
   "name": "feed",
   "app_id": "870ab41c",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }

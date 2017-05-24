@@ -1,0 +1,58 @@
+<ion-header>
+	<ion-navbar color="silver">
+		<ion-title>
+			Order Summary
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-card>
+
+		<ion-card-content>
+			<ion-card-title class="order-title">
+				{{ orderTitle }}
+			</ion-card-title>
+			<p class="order-description">
+				{{ orderDescription }}
+			</p>
+		</ion-card-content>
+	</ion-card>
+	<ion-card>
+		<ion-item>
+			<ion-icon name="home" item-left large></ion-icon>
+			<h2>Delivery Address</h2>
+			<p>{{ deliveryTo }}</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-icon name="list-box" item-left large></ion-icon>
+			<h2>Retailer Address</h2>
+			<p>{{ deliveryFrom }}</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-icon name="calendar" item-left large></ion-icon>
+			<h2>Delivery Date</h2>
+			<p>{{ deliveryOn }}</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-icon name="bicycle" item-left large></ion-icon>
+			<h2>Distance</h2>
+			<p>{{ distance | number : '1.2-2' }}&nbsp;Km</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-icon name="cash" item-left large></ion-icon>
+			<h2>Amount</h2>
+			<p>Rs.&nbsp;{{ estimatedCost | number : '1.2-2' }}</p>
+		</ion-item>
+	</ion-card>
+
+	<div padding class="action-sheets-basic-page">
+          <button ion-button color="primary" (click)="callToRidder()" block  class="button-call"><ion-icon name="ios-call"></ion-icon> &nbsp; &nbsp;Call to Rider</button>
+          <button ion-button color="primary" (click)="cancelOrder()" block  class="button-close"><ion-icon name="close"></ion-icon> &nbsp; &nbsp;Cancel Order</button>
+    </div>
+
+</ion-content>

@@ -9,17 +9,25 @@
 <ion-content>
 	<ion-card>
 		<ion-list>
-		<ion-item>
-			<ion-label stacked>Order Title</ion-label>
-			<ion-input type="text" [(ngModel)]="orderTitle"></ion-input>
-		</ion-item>
-		<ion-item>
-			<ion-label stacked>Order Description</ion-label>
-			<ion-textarea [(ngModel)]="orderDescription" item-height="100"></ion-textarea>
-		</ion-item>
-	</ion-list>
-	<div padding>
-		<button ion-button color="primary" block (click)="onClickPlaceOrderButtton()">Order Now</button>
-	</div>
+			<ion-item>
+				<ion-label stacked class="lbl">Order Title</ion-label>
+				<ion-input class="textbox" type="text" [(ngModel)]="orderTitle"></ion-input>
+			</ion-item>
+
+		
+			<ion-item>
+				<ion-label stacked class="lbl">Order Description</ion-label>
+				<ion-textarea class="textbox" [(ngModel)]="orderDescription" item-height="100"></ion-textarea>
+			</ion-item>
+
+		</ion-list>
+
+		
+
 	</ion-card>
+	
+	<div padding class="action-sheets-basic-page">
+		<button ion-button color="primary" block (click)="onClickPlaceOrderButtton()" class="button-order">Order Now</button>
+	</div>
+
 </ion-content>
